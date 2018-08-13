@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sopan.quran">
+
+    <application
+        android:name="com.sopan.quran.App"
+        android:allowBackup="true"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.Mushaf">
+        <activity
+            android:name="com.sopan.quran.activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sopan.quran.activity.AyahWordActivity"
+            android:parentActivityName="com.sopan.quran.activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sopan.quran.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.sopan.quran.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.sopan.quran.activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sopan.quran.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.sopan.quran.activity.TafsirActivity"
+            android:parentActivityName="com.sopan.quran.activity.AyahWordActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sopan.quran.activity.AyahWordActivity" />
+        </activity>
+    </application>
+
+</manifest>
