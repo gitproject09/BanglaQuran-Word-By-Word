@@ -9,9 +9,10 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         FirstRunPrefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);

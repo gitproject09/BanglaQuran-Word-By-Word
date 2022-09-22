@@ -2,7 +2,6 @@ package com.sopan.quran.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,8 @@ import com.sopan.quran.R;
 import com.sopan.quran.model.Tafsir;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Sopan on 8/20/15.

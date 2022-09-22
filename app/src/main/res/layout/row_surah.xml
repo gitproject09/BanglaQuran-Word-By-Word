@@ -56,4 +56,5 @@
         android:layout_height="@dimen/lineWidth"
         android:layout_alignParentBottom="true"
         android:background="@android:color/darker_gray" />
+
 </RelativeLayout>

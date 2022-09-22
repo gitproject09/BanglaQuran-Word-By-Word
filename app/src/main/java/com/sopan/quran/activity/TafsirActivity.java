@@ -2,11 +2,12 @@ package com.sopan.quran.activity;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.sopan.quran.R;
 import com.sopan.quran.fragment.TafsirFragment;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * Created by Sopan on 8/20/15.
@@ -21,7 +22,6 @@ public class TafsirActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         Bundle bundle = this.getIntent().getExtras();
 

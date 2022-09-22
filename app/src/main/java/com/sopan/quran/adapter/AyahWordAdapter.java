@@ -7,8 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -27,6 +26,8 @@ import com.sopan.quran.util.settings.Config;
 import com.sopan.quran.view.layout.FlowLayout;
 
 import java.util.ArrayList;
+
+import androidx.core.content.ContextCompat;
 
 
 /**

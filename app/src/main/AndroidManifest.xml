@@ -10,15 +10,18 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.Mushaf">
+
         <activity
             android:name="com.sopan.quran.activity.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.sopan.quran.activity.AyahWordActivity"
             android:parentActivityName="com.sopan.quran.activity.MainActivity">
@@ -26,6 +29,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sopan.quran.activity.MainActivity" />
         </activity>
+
         <activity
             android:name="com.sopan.quran.activity.SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -34,6 +38,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sopan.quran.activity.MainActivity" />
         </activity>
+
         <activity
             android:name="com.sopan.quran.activity.TafsirActivity"
             android:parentActivityName="com.sopan.quran.activity.AyahWordActivity">
@@ -41,6 +46,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sopan.quran.activity.AyahWordActivity" />
         </activity>
+
     </application>
 
 </manifest>
