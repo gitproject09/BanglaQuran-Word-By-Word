@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/lineSpacingExtra"
         android:padding="@dimen/textViewPadding"
+        android:textIsSelectable="true"
         android:visibility="gone"/>
 
     <com.sopan.quran.view.layout.FlowLayout
@@ -34,6 +35,7 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/lineSpacingExtra"
         android:padding="@dimen/textViewPadding"
+        android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:visibility="gone" />
 

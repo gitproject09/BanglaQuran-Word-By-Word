@@ -5,16 +5,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.WindowManager;
 
 import com.sopan.quran.R;
 import com.sopan.quran.database.datasource.SurahDataSource;
-import com.sopan.quran.fragment.AyahWordFragment;
+import com.sopan.quran.fragment.JsonAyahWordFragment;
 import com.sopan.quran.util.settings.Config;
 
-public class AyahWordActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+public class JsonAyahWordActivity extends AppCompatActivity {
 
     final private static int SCREEN_TIMEOUT = 600;
     static public String surahName;
@@ -44,7 +45,7 @@ public class AyahWordActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.main_container, AyahWordFragment.newInstance(bundle)).commit();
+            fragmentManager.beginTransaction().replace(R.id.main_container, JsonAyahWordFragment.newInstance(bundle)).commit();
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -60,8 +61,6 @@ public class AyahWordActivity extends AppCompatActivity {
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
-
-
     }
 
     @Override
@@ -74,27 +73,4 @@ public class AyahWordActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ayah, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 }

@@ -7,9 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -31,12 +28,13 @@ import com.sopan.quran.view.layout.FlowLayout;
 import java.util.ArrayList;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**
  * Created by Sopan on 7/19/15.
  */
-public class AyahWordAdapter extends RecyclerView.Adapter<AyahWordAdapter.AyahViewHolder> {
+public class JsonAyahWordAdapter extends RecyclerView.Adapter<JsonAyahWordAdapter.AyahViewHolder> {
 
     static boolean showTranslation;
     static boolean wordByWord;
@@ -49,7 +47,7 @@ public class AyahWordAdapter extends RecyclerView.Adapter<AyahWordAdapter.AyahVi
     long surah_id;
     private ArrayList<AyahWord> ayahWordArrayList;
 
-    public AyahWordAdapter(ArrayList<AyahWord> ayahWordArrayList, Context context, long surah_id) {
+    public JsonAyahWordAdapter(ArrayList<AyahWord> ayahWordArrayList, Context context, long surah_id) {
 
 
         this.ayahWordArrayList = ayahWordArrayList;
@@ -83,15 +81,15 @@ public class AyahWordAdapter extends RecyclerView.Adapter<AyahWordAdapter.AyahVi
     }
 
     @Override
-    public AyahWordAdapter.AyahViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public JsonAyahWordAdapter.AyahViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_ayah_word, parent, false);
-        AyahWordAdapter.AyahViewHolder viewHolder = new AyahWordAdapter.AyahViewHolder(view);
+        JsonAyahWordAdapter.AyahViewHolder viewHolder = new JsonAyahWordAdapter.AyahViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(AyahWordAdapter.AyahViewHolder holder, int position) {
+    public void onBindViewHolder(JsonAyahWordAdapter.AyahViewHolder holder, int position) {
 
         final AyahWord ayahWord = ayahWordArrayList.get(position);
 

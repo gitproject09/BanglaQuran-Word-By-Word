@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sopan.quran.R;
+import com.sopan.quran.activity.SettingsActivity;
 import com.sopan.quran.intrface.OnItemClickListener;
 import com.sopan.quran.model.Surah;
 
@@ -25,13 +26,10 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.SurahViewHol
     private ArrayList<Surah> surahArrayList;
     private Context context;
 
-
     public SurahAdapter(ArrayList<Surah> surahArrayList, Context context) {
         this.surahArrayList = surahArrayList;
         this.context = context;
-
     }
-
 
     @Override
     public SurahAdapter.SurahViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,7 +44,11 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.SurahViewHol
     public void onBindViewHolder(SurahAdapter.SurahViewHolder holder, int position) {
 
         Surah surah = surahArrayList.get(position);
-        holder.surah_idTextView.setText(Long.toString(surah.getId()) + ".");
+
+        int suraNumb = Math.toIntExact(surah.getId());
+        holder.surah_idTextView.setText(SettingsActivity.replaceBanglaText(context, "" + suraNumb) + ".");
+
+        //holder.surah_idTextView.setText(Long.toString(surah.getId()) + ".");
         holder.translateTextView.setText(surah.getNameTranslate());
         holder.arabicTextView.setText(surah.getNameArabic());
 

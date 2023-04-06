@@ -14,7 +14,7 @@
             android:key="showTranslation"
             android:title="@string/show_trans" />
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="wordByWord"
             android:title="@string/wordbyword" />
     </PreferenceCategory>

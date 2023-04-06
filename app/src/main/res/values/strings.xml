@@ -32,7 +32,9 @@
     <string name="copy">Copy</string>
     <string name="share">Share</string>
 
-    <string name="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</string>
-    <string name="title_activity_test">TestActivity</string>
+    <string name="bismillah" translatable="false">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</string>
+    <string name="bismillah_bn">In the name of Allah, the Gracious, the Merciful.</string>
+
+    <string name="firtsNumb">(1)</string>
 
 </resources>

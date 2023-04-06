@@ -31,6 +31,14 @@
         </activity>
 
         <activity
+            android:name="com.sopan.quran.activity.JsonAyahWordActivity"
+            android:parentActivityName="com.sopan.quran.activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sopan.quran.activity.MainActivity" />
+        </activity>
+
+        <activity
             android:name="com.sopan.quran.activity.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName="com.sopan.quran.activity.MainActivity">

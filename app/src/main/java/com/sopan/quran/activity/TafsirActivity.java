@@ -28,9 +28,7 @@ public class TafsirActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             FragmentManager fragmentManager = getFragmentManager();
 
-            fragmentManager.beginTransaction()
-                    .replace(R.id.main_container, TafsirFragment.newInstance(bundle))
-                    .commit();
+            fragmentManager.beginTransaction().replace(R.id.main_container, TafsirFragment.newInstance(bundle)).commit();
         }
 
     }

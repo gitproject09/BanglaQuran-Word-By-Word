@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.sopan.quran.R;
 import com.sopan.quran.activity.AyahWordActivity;
+import com.sopan.quran.activity.JsonAyahWordActivity;
 import com.sopan.quran.adapter.SurahAdapter;
 import com.sopan.quran.database.datasource.SurahDataSource;
 import com.sopan.quran.intrface.OnItemClickListener;
@@ -97,7 +98,8 @@ public class SurahFragment extends Fragment {
                 dataBundle.putLong(SurahDataSource.SURAH_AYAH_NUMBER, ayah_number);
                 dataBundle.putString(SurahDataSource.SURAH_NAME_TRANSLATE, surah_name);
 
-                Intent intent = new Intent(getActivity(), AyahWordActivity.class);
+               // Intent intent = new Intent(getActivity(), AyahWordActivity.class);
+                Intent intent = new Intent(getActivity(), JsonAyahWordActivity.class);
                 intent.putExtras(dataBundle);
                 startActivity(intent);
 

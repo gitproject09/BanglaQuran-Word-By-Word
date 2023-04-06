@@ -1,13 +1,10 @@
 package com.sopan.quran.fragment;
 
-
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,37 +12,47 @@ import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.sopan.quran.R;
-import com.sopan.quran.adapter.AyahWordAdapter;
+import com.sopan.quran.adapter.JsonAyahWordAdapter;
 import com.sopan.quran.database.datasource.AyahWordDataSource;
 import com.sopan.quran.database.datasource.SurahDataSource;
 import com.sopan.quran.model.AyahWord;
 import com.sopan.quran.util.settings.Config;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
+
+import static com.sopan.quran.database.datasource.AyahWordDataSource.QURAN_BANGLA;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AyahWordFragment extends Fragment {
+public class JsonAyahWordFragment extends Fragment {
 
 
     long surah_id;
     long ayah_number;
     String lang;
+    String suraFileName = "001";
     private ArrayList<AyahWord> ayahWordArrayList;
     private RecyclerView mRecyclerView;
-    private AyahWordAdapter ayahWordAdapter;
+    private JsonAyahWordAdapter ayahWordAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public AyahWordFragment() {
+    public JsonAyahWordFragment() {
         // Required empty public constructor
     }
 
-    public static AyahWordFragment newInstance(Bundle bundle) {
-        AyahWordFragment ayahWordFragment = new AyahWordFragment();
+    public static JsonAyahWordFragment newInstance(Bundle bundle) {
+        JsonAyahWordFragment ayahWordFragment = new JsonAyahWordFragment();
         ayahWordFragment.setArguments(bundle);
         return ayahWordFragment;
     }
@@ -58,9 +65,23 @@ public class AyahWordFragment extends Fragment {
         lang = sp.getString(Config.LANG, Config.defaultLang);
         surah_id = getArguments().getLong(SurahDataSource.SURAH_ID_TAG);
         ayah_number = getArguments().getLong(SurahDataSource.SURAH_AYAH_NUMBER);
+
+        // Work here
+        //  ayahWordArrayList = getAyahWordsBySurah(surah_id, ayah_number);
+        if (surah_id <= 9) {
+            suraFileName = "00" + surah_id;
+        } else if (surah_id >= 10 && surah_id < 100) {
+            suraFileName = "0" + surah_id;
+        } else {
+            suraFileName = "" + surah_id;
+        }
+        Log.w(JsonAyahWordFragment.class.getSimpleName(), "Sura File Name : " + suraFileName);
+
         ayahWordArrayList = getAyahWordsBySurah(surah_id, ayah_number);
+        //ayahWordArrayList = getAyahWordsBySurahFromJson(suraFileName, ayah_number);
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,7 +99,7 @@ public class AyahWordFragment extends Fragment {
         // Connect the scroller to the recycler (to let the recycler scroll the scroller's handle)
         mRecyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
-        ayahWordAdapter = new AyahWordAdapter(ayahWordArrayList, getActivity(), surah_id);
+        ayahWordAdapter = new JsonAyahWordAdapter(ayahWordArrayList, getActivity(), surah_id);
 
 
         return view;
@@ -133,5 +154,55 @@ public class AyahWordFragment extends Fragment {
         return ayahWordArrayList;
     }
 
+    private ArrayList<AyahWord> getAyahWordsBySurahFromJson(String suraNumber, long ayah_number) {
 
+        ArrayList<AyahWord> ayahWordArrayList = new ArrayList<AyahWord>();
+
+        try {
+
+            JSONObject jsonObject = new JSONObject(loadJSONFromAsset(suraNumber));
+
+            String nameEnglish = (String) jsonObject.get("nameEnglish");
+            String nameTrans = (String) jsonObject.get("nameTrans");
+            String nameArabic = (String) jsonObject.get("nameArabic");
+            int chapterNumber = (int) jsonObject.get("chapterNumber");
+            int totalVerses = (int) jsonObject.get("nVerses");
+
+            Log.d(JsonAyahWordFragment.class.getSimpleName(), "Json Log : " + nameEnglish + "Chapter : " + chapterNumber);
+
+            JSONArray jsonArray = (JSONArray) jsonObject.get("verses");
+            Log.w(JsonAyahWordFragment.class.getSimpleName(), "Json Length : " + jsonArray.length());
+
+            for (int i = 1; i < jsonArray.length(); i++) {
+                // long ayatId = jsonArray.getJSONObject(i).getLong("verseNumber");
+                AyahWord ayahWord = new AyahWord();
+                ayahWord.setQuranVerseId(jsonArray.getJSONObject(i).getLong("verseNumber"));
+                ayahWord.setQuranArabic(jsonArray.getJSONObject(i).getString("verseString"));
+               // ayahWord.setQuranTranslate(jsonArray.getJSONObject(i).getString("verseStringB") + "\n\n" +jsonArray.getJSONObject(i).getString("verseStringE"));
+                ayahWord.setQuranTranslate(jsonArray.getJSONObject(i).getString("verseStringB"));
+                ayahWordArrayList.add(ayahWord);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ayahWordArrayList;
+    }
+
+    public String loadJSONFromAsset(String suraNumber) {
+        String json = null;
+        try {
+            InputStream is = getActivity().getAssets().open("quran/" + suraNumber + ".json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
 }

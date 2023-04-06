@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, SurahFragment.newInstance())
-                        .commit();
+                fragmentManager.beginTransaction().replace(R.id.main_container, SurahFragment.newInstance()).commit();
             }
         }
     }
@@ -146,9 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         setLocaleBangla();
                         recreate();
                         FragmentManager fragmentManager1 = getFragmentManager();
-                        fragmentManager1.beginTransaction()
-                                .replace(R.id.main_container, SurahFragment.newInstance())
-                                .commit();
+                        fragmentManager1.beginTransaction().replace(R.id.main_container, SurahFragment.newInstance()).commit();
 
                         break;
 
@@ -160,9 +156,7 @@ public class MainActivity extends AppCompatActivity {
                         setLocaleEnglish();
                         recreate();
                         FragmentManager fragmentManager2 = getFragmentManager();
-                        fragmentManager2.beginTransaction()
-                                .replace(R.id.main_container, SurahFragment.newInstance())
-                                .commit();
+                        fragmentManager2.beginTransaction().replace(R.id.main_container, SurahFragment.newInstance()).commit();
                         break;
 
                    /* case 2:
@@ -241,16 +235,10 @@ public class MainActivity extends AppCompatActivity {
                 setLanguage();
                 FirstRunPrefs.edit().putBoolean(Config.FIRST_RUN, false).apply();
             } else {
-
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, SurahFragment.newInstance())
-                        .commit();
-
+                fragmentManager.beginTransaction().replace(R.id.main_container, SurahFragment.newInstance()).commit();
             }
-
         }
-
     }
 
 }
